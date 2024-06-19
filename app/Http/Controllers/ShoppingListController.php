@@ -45,7 +45,7 @@ $sql = $this->getListBuilder()
 var_dump($sql);
 */
         //
-        return view('task/list', ['list' => $list]);
+        return view('shopping_list/list', ['list' => $list]);
     }
 
     /**

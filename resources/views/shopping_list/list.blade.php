@@ -5,18 +5,18 @@
 
 {{-- メインコンテンツ --}}
 @section('contets')
-        <h1>タスクの登録</h1>
+        <h1>「買うもの」の登録</h1>
             @if (session('front.task_register_success') == true)
-                タスクを登録しました！！<br>
+                「買うもの」を登録しました！！<br>
             @endif
             @if (session('front.task_delete_success') == true)
-                タスクを削除しました！！<br>
+                「買うもの」を削除しました！！<br>
             @endif
             @if (session('front.task_completed_success') == true)
-                タスクを完了にしました！！<br>
+                「買うもの」を完了にしました！！<br>
             @endif
             @if (session('front.task_completed_failure') == true)
-                タスクの完了に失敗しました....<br>
+                「買うもの」の完了に失敗しました....<br>
             @endif
             @if ($errors->any())
                 <div>
@@ -27,23 +27,17 @@
             @endif
             <form action="/task/register" method="post">
                 @csrf
-                タスク名:<input name="name" value="{{ old('name') }}"><br>
-                期限:<input name="period" type="date" value="{{ old('period') }}"><br>
-                タスク詳細:<textarea name="detail">{{ old('detail') }}</textarea><br>
-                重要度:<label><input type="radio" name="priority" value="1" @if (old('priority') == 1) checked @endif>低い</label> /
-                    <label><input type="radio" name="priority" value="2" @if (old('priority', 2) == 2) checked @endif>普通</label> /
-                    <label><input type="radio" name="priority" value="3" @if (old('priority') == 3) checked @endif>高い</label><br>
-                <button>タスクを登録する</button>
+                「買うもの」名:<input name="name" value="{{ old('name') }}"><br>
+
+                <button>「買うもの」を登録する</button>
             </form>
 
-        <h1>タスクの一覧</h1>
-        <a href="/task/csv/download">CSVダウンロード</a><br>
-        <a href="/completed_tasks/list">完了タスク一覧</a><br>
+        <h1>「買うもの」一覧</h1>
+        <a href="/completed_tasks/list">購入済み「買うもの」一覧</a><br>
         <table border="1">
         <tr>
-            <th>タスク名
-            <th>期限
-            <th>重要度
+            <th>登録日
+            <th>「買うもの」名
 @foreach ($list as $task)
         <tr>
             <td>{{ $task->name }}
