@@ -4,24 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTasksTable extends Migration
+class CreateCompletedShoppingListsTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-     public function up()
+    public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('completed_shopping_lists', function (Blueprint $table) {
             $table->id();
+            $table->date('period')->comment('登録日');
             $table->string('name', 128)->comment('「買うもの」名');
-            $table->unsignedBigInteger('shopping_list_id')->comment('このタスクの所有者');
-            $table->foreign('hopping_list_id')->references('id')->on('users'); // 外部キー制約
+            $table->unsignedBigInteger('user_id')->comment('この買うものリストの所有者');
+            $table->foreign('user_id')->references('id')->on('users'); // 外部キー制約
             //$table->timestamps();
-            $table->dateTime('created_at')->useCurrent()->comment('タスク完了日時');
+            $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
-            //
         });
     }
 
@@ -32,6 +32,6 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hopping_lists');
+        Schema::dropIfExists('completed_shopping_lists');
     }
 }

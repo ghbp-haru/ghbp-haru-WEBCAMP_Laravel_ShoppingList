@@ -33,7 +33,7 @@
             </form>
 
         <h1>「買うもの」一覧</h1>
-        <a href="/completed_tasks/list">購入済み「買うもの」一覧</a><br>
+        <a href="/completed_shopping_list/list">購入済み「買うもの」一覧</a><br>
         <table border="1">
         <tr>
             <th>登録日
@@ -52,7 +52,7 @@
         {{-- {{ $list->links() }} --}}
         現在 {{ $list->currentPage() }} ページ目<br>
         @if ($list->onFirstPage() === false)
-            <a href="/task/list">最初のページ</a>
+            <a href="/shopping_list/list">最初のページ</a>
         @else
             最初のページ
         @endif
