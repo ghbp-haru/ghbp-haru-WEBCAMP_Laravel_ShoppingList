@@ -41,7 +41,7 @@ class AuthController extends Controller
 
         //
         $request->session()->regenerate();
-        return redirect()->intended('/shopping_list/list');
+        return redirect('/shopping_list/list');
     }
 
     /**
