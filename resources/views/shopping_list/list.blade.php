@@ -25,7 +25,7 @@
                 @endforeach
                 </div>
             @endif
-            <form action="/task/register" method="post">
+            <form action="/register" method="post">
                 @csrf
                 「買うもの」名:<input name="name" value="{{ old('name') }}"><br>
 

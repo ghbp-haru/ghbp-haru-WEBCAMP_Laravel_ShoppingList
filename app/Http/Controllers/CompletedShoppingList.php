@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\CompletedTask as CompletedTaskModel;
+use App\Models\CompletedShopping_List as CompletedShoppingListModel;
 
-class CompletedTaskController extends Controller
+class CompletedShoppingListController extends Controller
 {
 
     protected function getListBuilder()
     {
-        return CompletedTaskModel::where('user_id', Auth::id())
+        return CompletedShoppingListModel::where('user_id', Auth::id())
                      ->orderBy('priority', 'DESC')
                      ->orderBy('period')
                      ->orderBy('created_at');
@@ -37,7 +37,7 @@ $sql = $this->getListBuilder()
 var_dump($sql);
 */
         //
-        return view('task.completed_list', ['list' => $list]);
+        return view('shopping_list.completedshopping_list_list', ['list' => $list]);
     }
 
 }
