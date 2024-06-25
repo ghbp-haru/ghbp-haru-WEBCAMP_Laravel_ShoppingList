@@ -6,16 +6,16 @@
 {{-- メインコンテンツ --}}
 @section('contets')
         <h1>「買うもの」の登録</h1>
-            @if (session('front.task_register_success') == true)
+            @if (session('front.shopping_list_register_success') == true)
                 「買うもの」を登録しました！！<br>
             @endif
-            @if (session('front.task_delete_success') == true)
+            @if (session('front.shopping_list_delete_success') == true)
                 「買うもの」を削除しました！！<br>
             @endif
-            @if (session('front.task_completed_success') == true)
+            @if (session('front.shopping_list_completed_success') == true)
                 「買うもの」を完了にしました！！<br>
             @endif
-            @if (session('front.task_completed_failure') == true)
+            @if (session('front.shopping_list_completed_failure') == true)
                 「買うもの」の完了に失敗しました....<br>
             @endif
             @if ($errors->any())

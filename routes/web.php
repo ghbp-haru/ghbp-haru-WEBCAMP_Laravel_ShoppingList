@@ -31,7 +31,7 @@ Route::prefix('/user')->group(function () {
     Route::post('/register', [UserController::class, 'register'])->name('front.user.register.post');
 });
 // 認可処理
-// Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::prefix('/shopping_list')->group(function () {
         Route::get('/list', [ShoppingListController::class, 'list'])->name('front.list');
         Route::post('/register', [ShoppingListController::class, 'register']);
@@ -42,7 +42,7 @@ Route::prefix('/user')->group(function () {
     Route::get('/completed_shopping_list/list', [CompletedShoppingListController::class, 'list']);
     // ログアウト
     Route::get('/logout', [AuthController::class, 'logout']);
-// });
+});
 
 // 管理画面
 Route::prefix('/admin')->group(function () {

@@ -85,7 +85,7 @@ var_dump($sql);
     {
         // task_idのレコードを取得する
         $shopping_list = shopping_listModel::find($shopping_list_id);
-        if ($task === null) {
+        if ($shopping_list === null) {
             return redirect('/shopping_list/list');
         }
         // 本人以外のタスクならNGとする
