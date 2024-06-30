@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\shopping_lists;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\shopping_list as shopping_listModel;
 
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -16,13 +17,13 @@ class ShoppingListController extends Controller
     /**
      * 一覧用の Illuminate\Database\Eloquent\Builder インスタンスの取得
      */
-    protected function getListBuilder()
-    {
-        return shopping_lists::where('user_id', Auth::id())
-                     ->orderBy('priority', 'DESC')
-                     ->orderBy('period')
-                     ->orderBy('created_at');
-    }
+    // protected function getListBuilder()
+    // {
+    //     return shopping_lists::where('user_id', Auth::id())
+    //                  ->orderBy('priority', 'DESC')
+    //                  ->orderBy('period')
+    //                  ->orderBy('created_at');
+    // }
 
     /**
      * タスク一覧ページ を表示する
@@ -54,10 +55,10 @@ var_dump($sql);
     {
         // validate済みのデータの取得
         $datum = $request->validated();
-        //
-        //$user = Auth::user();
-        //$id = Auth::id();
-        //var_dump($datum, $user, $id); exit;
+        
+        // $user = Auth::user();
+        // $id = Auth::id();
+        // var_dump($datum, $user, $id); exit;
 
         // user_id の追加
         $datum['user_id'] = Auth::id();

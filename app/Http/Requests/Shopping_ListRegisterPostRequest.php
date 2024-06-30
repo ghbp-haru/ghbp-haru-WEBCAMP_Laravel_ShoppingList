@@ -17,7 +17,6 @@ class Shopping_ListRegisterPostRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:128'],
-            'period' => ['required', 'date', 'after_or_equal:today'],
             'detail' => ['max:65535'],
         ];
     }
