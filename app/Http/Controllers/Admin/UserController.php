@@ -16,8 +16,8 @@ class UserController extends Controller
     {
         $group_by_column = ['users.id', 'users.name'];
         $list = UserModel::select($group_by_column)
-                         ->selectRaw('count(tasks.id) AS task_num')
-                         ->leftJoin('tasks', 'users.id', '=', 'tasks.user_id')
+                         ->selectRaw('count(users.id) AS shopping_lists_num')
+                         ->leftJoin('shopping_lists', 'users.id', '=', 'shopping_lists.user_id')
                          ->groupBy($group_by_column)
                          ->orderBy('users.id')
                          ->get();

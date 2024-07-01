@@ -9,7 +9,6 @@ use App\Models\shopping_lists;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\shopping_list as shopping_listModel;
-
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ShoppingListController extends Controller
@@ -17,13 +16,13 @@ class ShoppingListController extends Controller
     /**
      * 一覧用の Illuminate\Database\Eloquent\Builder インスタンスの取得
      */
-    // protected function getListBuilder()
-    // {
-    //     return shopping_lists::where('user_id', Auth::id())
-    //                  ->orderBy('priority', 'DESC')
-    //                  ->orderBy('period')
-    //                  ->orderBy('created_at');
-    // }
+    protected function getListBuilder()
+    {
+         return shopping_listModel::where('user_id', Auth::id())
+                     ->orderBy('priority', 'DESC')
+                    //  ->orderBy('period')
+                     ->orderBy('created_at');
+    }
 
     /**
      * タスク一覧ページ を表示する
@@ -38,13 +37,7 @@ class ShoppingListController extends Controller
         // 一覧の取得
         $list = $this->getListBuilder()
                      ->paginate($per_page);
-/*
-$sql = $this->getListBuilder()
-            ->toSql();
-//echo "<pre>\n"; var_dump($sql, $list); exit;
-var_dump($sql);
-*/
-        //
+
         return view('shopping_list/list', ['list' => $list]);
     }
 
@@ -55,10 +48,6 @@ var_dump($sql);
     {
         // validate済みのデータの取得
         $datum = $request->validated();
-        
-        // $user = Auth::user();
-        // $id = Auth::id();
-        // var_dump($datum, $user, $id); exit;
 
         // user_id の追加
         $datum['user_id'] = Auth::id();
@@ -82,7 +71,7 @@ var_dump($sql);
     /**
      * タスクの詳細閲覧
      */
-   public function detail($shopping_list_id)
+  public function detail($shopping_list_id)
     {
         // task_idのレコードを取得する
         $shopping_list = shopping_listModel::find($shopping_list_id);
@@ -151,12 +140,11 @@ var_dump($sql);
         // task_idのレコードを取得する
         $task = $this->getTaskModel($task_id);
         if ($task === null) {
-            return redirect('/task/list');
+            return redirect('/shopping_list/list');
         }
 
         // レコードの内容をUPDATEする
         $task->name = $datum['name'];
-        $task->period = $datum['period'];
         $task->detail = $datum['detail'];
         $task->priority = $datum['priority'];
 /*
@@ -169,9 +157,9 @@ var_dump($sql);
         $task->save();
 
         // タスク編集成功
-        $request->session()->flash('front.task_edit_success', true);
+        $request->session()->flash('front.shopping_list_edit_success', true);
         // 詳細閲覧画面にリダイレクトする
-        return redirect(route('detail', ['task_id' => $task->id]));
+        return redirect(route('detail', ['shopping_list_id' => $task->id]));
     }
 
     /**
@@ -232,7 +220,7 @@ var_dump($sql);
             var_dump($e->getMessage()); exit;
             // トランザクション異常終了
             DB::rollBack();
-               // 完了失敗メッセージ出力
+              // 完了失敗メッセージ出力
             $request->session()->flash('front.shopping_list_completed_failure', true);
         }
 

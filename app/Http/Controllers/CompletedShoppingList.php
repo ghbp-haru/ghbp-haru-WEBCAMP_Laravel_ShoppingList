@@ -13,7 +13,6 @@ class CompletedShoppingListController extends Controller
     {
         return CompletedShoppingListModel::where('user_id', Auth::id())
                      ->orderBy('priority', 'DESC')
-                     ->orderBy('period')
                      ->orderBy('created_at');
     }
 
