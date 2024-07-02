@@ -59,7 +59,7 @@ class ShoppingListController extends Controller
     }
 
     /**
-     * タスクの新規登録
+     * 買い物リストの新規登録
      */
     public function register(Shopping_ListRegisterPostRequest $request)
     {
