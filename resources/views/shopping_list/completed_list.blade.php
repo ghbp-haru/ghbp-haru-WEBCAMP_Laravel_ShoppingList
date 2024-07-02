@@ -1,23 +1,19 @@
 @extends('layout')
 
 {{-- タイトル --}}
-@section('title')(詳細画面)@endsection
+@section('title')(`一覧画面)@endsection
 
 {{-- メインコンテンツ --}}
 @section('contets')
-        <h1>完了タスクの一覧</h1>
-        <a href="//list">タスク一覧に戻る</a><br>
+        <h1>購入済み「買うもの」一覧</h1>
+        <a href="/shopping_list/list">「買うもの」一覧に戻る</a><br>
         <table border="1">
         <tr>
-            <th>タスク名
-            <th>期限
-            <th>重要度
-            <th>タスク終了日
+            <th>「買うもの」名
+            <th>購入日
 @foreach ($list as $task)
         <tr>
             <td>{{ $task->name }}
-            <td>{{ $task->period }}
-            <td>{{ $task->getPriorityString() }}
             <td>{{ $task->created_at }}
 @endforeach
         </table>
@@ -25,7 +21,7 @@
         {{-- {{ $list->links() }} --}}
         現在 {{ $list->currentPage() }} ページ目<br>
         @if ($list->onFirstPage() === false)
-            <a href="/completed_tasks/list">最初のページ</a>
+            <a href="/completed_shopping_list/list">最初のページ</a>
         @else
             最初のページ
         @endif

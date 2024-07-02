@@ -38,7 +38,7 @@
         <tr>
             <th>登録日
             <th>「買うもの」名
-@foreach ($list as $task)
+@foreach ($list as $shopping_list)
         <tr>
             <td>{{ $shopping_list->name }}
             <td>{{ $shopping_list->period }}

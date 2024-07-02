@@ -20,7 +20,7 @@ class ShoppingListController extends Controller
     {
          return shopping_listModel::where('user_id', Auth::id())
                      ->orderBy('priority', 'DESC')
-                     ->orderBy('period')
+                    //  ->orderBy('period')
                      ->orderBy('created_at');
     }
 
