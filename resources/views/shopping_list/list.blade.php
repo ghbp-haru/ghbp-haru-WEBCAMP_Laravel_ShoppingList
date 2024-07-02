@@ -40,12 +40,11 @@
             <th>「買うもの」名
 @foreach ($list as $task)
         <tr>
-            <td>{{ $task->name }}
-            <td>{{ $task->period }}
-            <td>{{ $task->getPriorityString() }}
-            <td><a href="{{ route('detail', ['task_id' => $task->id]) }}">詳細閲覧</a>
-            <td><a href="{{ route('edit', ['task_id' => $task->id]) }}">編集</a>
-            <td><form action="{{ route('complete', ['task_id' => $task->id]) }}" method="post"> @csrf <button onclick='return confirm("このタスクを「完了」にします。よろしいですか？");' >完了</button></form>
+            <td>{{ $shopping_list->name }}
+            <td>{{ $shopping_list->period }}
+            <td>{{ $shopping_list->getPriorityString() }}
+            <td><form action="{{ route('complete', ['$shopping_list_id' => $shopping_list->id]) }}" method="post"> @csrf <button onclick='return confirm("この「買うもの」を「完了」にします。よろしいですか？");' >完了</button></form>
+            <td><form action="{{ route('delete', ['$shopping_list_id' => $shopping_list->id]) }}" method="post">@csrf @method("DELETE")<button onclick='return confirm("この「買うもの」を削除します。よろしいですか？");'>削除</button></form>
 @endforeach
         </table>
         <!-- ページネーション -->

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use App\Models\Shopping_list;
+use App\Models\Shopping_list as shopping_listModel;
 
 class Shopping_ListRegisterPostRequest extends FormRequest
 {
@@ -17,6 +17,7 @@ class Shopping_ListRegisterPostRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:128'],
+            'period' => ['required', 'date', 'after_or_equal:today'],
             'detail' => ['max:65535'],
         ];
     }
