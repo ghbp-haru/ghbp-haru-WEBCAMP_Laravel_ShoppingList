@@ -16,25 +16,25 @@ class ShoppingListController extends Controller
     /**
      * 一覧用の Illuminate\Database\Eloquent\Builder インスタンスの取得
      */
-    // protected function getListBuilder()
-    // {
-    //      return shopping_listModel::where('user_id', Auth::id())
-    //                  ->orderBy('priority', 'DESC')
-    //                  ->orderBy('period')
-    //                  ->orderBy('created_at');
-    // }
+    protected function getListBuilder()
+    {
+         return shopping_listModel::where('user_id', Auth::id())
+                     ->orderBy('priority', 'DESC')
+                     ->orderBy('period')
+                     ->orderBy('created_at');
+    }
 
     /**
      * タスク一覧ページ を表示する　一旦コメントアウト
      *
      * @return \Illuminate\View\View
 //      */
-//     public function list()
-//     {
-//         // 1Page辺りの表示アイテム数を設定
-//         $per_page = 20;
+    public function list()
+    {
+        // 1Page辺りの表示アイテム数を設定
+        $per_page = 20;
 
-//         // 一覧の取得
+        // 一覧の取得
 //         $list = shopping_listModel::where('user_id', Auth::id())
 //                          ->orderBy('priority', 'DESC')
 //                          ->orderBy('period')
@@ -51,12 +51,12 @@ class ShoppingListController extends Controller
 // echo "<pre>\n"; var_dump($sql, $list); exit;
        
     
-        // ここは元々書いてあったコード柴田コメント
-        // $list = $this->getListBuilder()
-        //              ->paginate($per_page);
+        
+        $list = $this->getListBuilder()
+                     ->paginate($per_page);
 
-    //     return view('shopping_list/list', ['list' => $list]);
-    // }
+        return view('shopping_list/list', ['list' => $list]);
+    }
 
     /**
      * タスクの新規登録
