@@ -36,7 +36,7 @@ $sql = $this->getListBuilder()
 var_dump($sql);
 */
         //
-        return view('shopping_list.completedshopping_list_list', ['list' => $list]);
+        return view('shopping_list.completed_list', ['list' => $list]);
     }
 
 }
