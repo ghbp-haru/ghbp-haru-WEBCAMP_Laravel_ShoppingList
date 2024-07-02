@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Shopping_ListRegisterPostRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Models\shopping_lists;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\shopping_list as shopping_listModel;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use App\Models\CompletedShoppingList;
 
 class ShoppingListController extends Controller
 {
@@ -19,7 +19,7 @@ class ShoppingListController extends Controller
     protected function getListBuilder()
     {
          return shopping_listModel::where('user_id', Auth::id())
-                     ->orderBy('priority', 'DESC')
+                    //  ->orderBy('priority', 'DESC')
                     //  ->orderBy('period')
                      ->orderBy('created_at');
     }
@@ -49,9 +49,9 @@ class ShoppingListController extends Controller
 //                  ->toSql();
 
 // echo "<pre>\n"; var_dump($sql, $list); exit;
-       
-    
-        
+
+
+
         $list = $this->getListBuilder()
                      ->paginate($per_page);
 
@@ -92,7 +92,7 @@ class ShoppingListController extends Controller
     public function delete(Request $request, $shopping_list_id)
     {
         // task_idのレコードを取得する
-        $shopping_list = $this->getShopping_ListModel($shopping_list_id);
+        $shopping_list = shopping_listModel::find($shopping_list_id);
 
         // タスクを削除する
         if ($shopping_list !== null) {
@@ -115,7 +115,7 @@ class ShoppingListController extends Controller
             DB::beginTransaction();
 
             // task_idのレコードを取得する
-            $shopping_list = $this->getShopping_ListModel($shopping_list_id);
+            $shopping_list = shopping_listModel::find($shopping_list_id);
             if ($shopping_list === null) {
                 // task_idが不正なのでトランザクション終了
                 throw new \Exception('');
@@ -129,7 +129,7 @@ class ShoppingListController extends Controller
             $dask_datum = $shopping_list->toArray();
             unset($dask_datum['created_at']);
             unset($dask_datum['updated_at']);
-            $r = CompletedShopping_ListModel::create($dask_datum);
+            $r = CompletedShoppingList::create($dask_datum);
             if ($r === null) {
                 // insertで失敗したのでトランザクション終了
                 throw new \Exception('');
