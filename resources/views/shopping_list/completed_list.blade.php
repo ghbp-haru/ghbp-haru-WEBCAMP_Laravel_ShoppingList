@@ -11,10 +11,10 @@
         <tr>
             <th>「買うもの」名
             <th>購入日
-@foreach ($list as $shopping_list)
+@foreach ($list as $completeddshopping_list)
         <tr>
-            <td>{{ $shopping_list->name }}
-            <td>{{ $shopping_list-->created_at }}
+            <td>{{ $completeddshopping_list->name }}
+            <td>{{ $completeddshopping_list->created_at->format('Y-m-d') }}
 @endforeach
         </table>
         <!-- ページネーション -->

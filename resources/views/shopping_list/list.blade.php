@@ -40,11 +40,12 @@
             <th>「買うもの」名
 @foreach ($list as $shopping_list)
         <tr>
-            <td>{{ $shopping_list->created_at }}
+            <td>{{ $shopping_list->created_at->format('Y-m-d') }}
             <td>{{ $shopping_list->name }}
             <td><form action="{{ route('complete', ['shopping_list_id' => $shopping_list->id]) }}" method="post"> @csrf <button onclick='return confirm("この「買うもの」を「完了」にします。よろしいですか？");' >完了</button></form>
+            <td>  </td>
             <td><form action="{{ route('delete', ['shopping_list_id' => $shopping_list->id]) }}" method="post">@csrf @method("DELETE")<button onclick='return confirm("この「買うもの」を削除します。よろしいですか？");'>削除</button></form>
-           
+
 
 @endforeach
         </table>

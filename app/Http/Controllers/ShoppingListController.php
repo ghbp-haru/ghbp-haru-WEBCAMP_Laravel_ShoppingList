@@ -32,7 +32,7 @@ class ShoppingListController extends Controller
     public function list()
     {
         // 1Page辺りの表示アイテム数を設定
-        $per_page = 20;
+        $per_page = 3;
 
         // 一覧の取得
 //         $list = shopping_listModel::where('user_id', Auth::id())

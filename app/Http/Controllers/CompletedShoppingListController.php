@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\CompletedShopping_List as CompletedShoppingListModel;
+use App\Models\CompletedShoppingList as CompletedShoppingListModel;
 
 class CompletedShoppingListController extends Controller
 {
@@ -12,7 +12,7 @@ class CompletedShoppingListController extends Controller
     protected function getListBuilder()
     {
         return CompletedShoppingListModel::where('user_id', Auth::id())
-                     ->orderBy('priority', 'DESC')
+                    //  ->orderBy('priority', 'DESC')
                      ->orderBy('created_at');
     }
 
