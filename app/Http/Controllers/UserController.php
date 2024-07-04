@@ -21,8 +21,8 @@ class UserController extends Controller
     protected function getListBuilder()
     {
         return UserModel::where('user_id', Auth::id())
-                     ->orderBy('priority', 'DESC')
-                     ->orderBy('period')
+                    //  ->orderBy('priority', 'DESC')
+                    //  ->orderBy('period')
                      ->orderBy('created_at');
     }
 
