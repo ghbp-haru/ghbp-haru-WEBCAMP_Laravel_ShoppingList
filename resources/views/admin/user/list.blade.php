@@ -2,6 +2,13 @@
 
 {{-- メインコンテンツ --}}
 @section('contets')
+@auth('admin')
+        <menu label="リンク">
+        <a href="/admin//top">管理画面Top</a><br>
+         <a href="/admin/user/list">ユーザー一覧</a><br>
+        <a href="/admin/logout">ログアウト</a><br>
+        </menu>
+@endauth
         <h1>ユーザ一覧</h1>
         <table border="1">
         <tr>
