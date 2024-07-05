@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>formテスト</title>
+        <title>会員登録</title>
     </head>
     <body>
       @yield('contets')
