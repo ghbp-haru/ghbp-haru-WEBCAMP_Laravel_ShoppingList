@@ -19,7 +19,8 @@ class ShoppingListController extends Controller
     protected function getListBuilder()
     {
          return shopping_listModel::where('user_id', Auth::id())
-                    
+                   
+                     ->orderBy('name', 'asc')
                      ->orderBy('created_at');
     }
 
@@ -41,14 +42,6 @@ class ShoppingListController extends Controller
     {
         // 1Page辺りの表示アイテム数を設定
         $per_page = 3;
-
-        // 一覧の取得
-        $list = shopping_listModel::where('user_id', Auth::id())
-                         ->orderBy('name', 'asc')
-                         ->get();
-
-   
-
 
 
         $list = $this->getListBuilder()
