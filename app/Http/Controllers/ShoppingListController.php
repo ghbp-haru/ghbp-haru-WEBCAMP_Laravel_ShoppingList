@@ -19,11 +19,19 @@ class ShoppingListController extends Controller
     protected function getListBuilder()
     {
          return shopping_listModel::where('user_id', Auth::id())
-                    //  ->orderBy('priority', 'DESC')
-                    //  ->orderBy('period')
+                    
                      ->orderBy('created_at');
     }
 
+    public function index()
+    {
+        // name順に昇順でソート
+        $shoppingLists = ShoppingList::orderBy('name', 'asc')->get();
+
+        // ビューにデータを渡す
+        return view('shopping_list.index', compact('shoppingLists'));
+    }
+    
     /**
      * タスク一覧ページ を表示する　一旦コメントアウト
      *
@@ -35,20 +43,11 @@ class ShoppingListController extends Controller
         $per_page = 3;
 
         // 一覧の取得
-//         $list = shopping_listModel::where('user_id', Auth::id())
-//                          ->orderBy('priority', 'DESC')
-//                          ->orderBy('period')
-//                          ->orderBy('created_at')
-//                          ->paginate($per_page);
-//                         //  ->get();
-// // /*
-// $sql = shopping_listModel::where('user_id', Auth::id())
-//                  ->orderBy('priority', 'DESC')
-//                  ->orderBy('period')
-//                  ->orderBy('created_at')
-//                  ->toSql();
+        $list = shopping_listModel::where('user_id', Auth::id())
+                         ->orderBy('name', 'asc')
+                         ->get();
 
-// echo "<pre>\n"; var_dump($sql, $list); exit;
+   
 
 
 
