@@ -8,7 +8,7 @@ class CreateAdminUsersTable extends Migration
 {
     /**
      * Run the migrations.
-     * 
+     *
      *
      * @return void
      */

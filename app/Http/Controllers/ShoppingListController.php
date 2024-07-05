@@ -19,7 +19,7 @@ class ShoppingListController extends Controller
     protected function getListBuilder()
     {
          return shopping_listModel::where('user_id', Auth::id())
-                   
+
                      ->orderBy('name', 'asc')
                      ->orderBy('created_at');
     }
@@ -32,7 +32,7 @@ class ShoppingListController extends Controller
         // ビューにデータを渡す
         return view('shopping_list.index', compact('shoppingLists'));
     }
-    
+
     /**
      * タスク一覧ページ を表示する　一旦コメントアウト
      *

@@ -18,7 +18,7 @@ class UserRegisterPost extends FormRequest
         return [
             'name' => ['required', 'max:128'],
             'email' => ['required', 'email', 'max:254'],
-            'password' => ['required', 'max:72'],
+            'password' => ['required', 'max:72', 'confirmed'],
             // 'period' => ['required', 'date', 'after_or_equal:today'],
             // 'detail' => ['max:65535'],
             // 'priority' => ['required', 'numeric', Rule::in( array_keys(TaskModel::PRIORITY_VALUE) ) ],
