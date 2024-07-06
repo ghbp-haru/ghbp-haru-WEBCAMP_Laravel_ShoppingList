@@ -19,7 +19,7 @@
             パスワード：<input  name="password" type="password"><br>
             <button>ログインする</button>
             <menu label="リンク">
-             <a href="/user/register">会員登録</a>
+            <a href="/user/register">会員登録</a>
             </menu>
         </form>
 @endsection

@@ -14,7 +14,7 @@
 @foreach ($list as $completeddshopping_list)
         <tr>
             <td>{{ $completeddshopping_list->name }}
-            <td>{{ $completeddshopping_list->created_at->format('Y-m-d') }}
+            <td>{{ $completeddshopping_list->created_at->format('Y/m/d') }}
 @endforeach
         </table>
         <!-- ページネーション -->
