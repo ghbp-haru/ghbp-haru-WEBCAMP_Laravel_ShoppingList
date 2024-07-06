@@ -12,8 +12,8 @@
         @endif
         <form action="/admin/login" method="post">
             @csrf
-            ログインID：<input name="login_id" value="{{ old('login_id') }}"><br>
-            パスワード：<input  name="password" type="password"><br>
+            ログインID:<input name="login_id" value="{{ old('login_id') }}"><br>
+            パスワード:<input  name="password" type="password"><br>
             <button>ログインする</button>
         </form>
     </body>
